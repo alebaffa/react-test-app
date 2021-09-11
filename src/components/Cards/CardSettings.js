@@ -1,8 +1,22 @@
 import React from "react";
+import axios from "axios";
 
-// components
+// components 
 
 export default function CardSettings() {
+  const apiCall = () => {  
+    axios({
+      method: "GET",
+      url: `https://catfact.ninja/fact`,
+    })
+      .then((res) => {
+        console.log("res", res.data);
+      })
+      .catch((err) => {
+        console.error(err)
+      });
+  };
+    
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -11,9 +25,8 @@ export default function CardSettings() {
             <h6 className="text-blueGray-700 text-xl font-bold">My account</h6>
             <button
               className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-              type="button"
-            >
-              Settings
+              type="button" onClick={apiCall}>
+              Call API
             </button>
           </div>
         </div>
